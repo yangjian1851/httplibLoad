@@ -136,13 +136,21 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>test.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>ml64.exe /c "$(ProjectDir)test.asm" /Fo "$(ProjectDir)test.obj"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="httpLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="httplib.h" />
+    <ClInclude Include="test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

